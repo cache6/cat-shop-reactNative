@@ -1,70 +1,112 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { Image, ImageBackground, StyleSheet, StatusBar, View, Text } from 'react-native';
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
+    <View style={{ flex: 1, backgroundColor: 'white' }}>
+      <ImageBackground
+        source={require('@/assets/images/cat-main.png')}
+        style={styles.container}
+        resizeMode="cover"
+      >
         <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+          source={require('@/assets/images/cat-logo-white.png')}
+          style={styles.logo}
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      </ImageBackground>
+
+      <View style={{ flex: 1 }}>
+        <View style={styles.category}>
+          <View style={{ flex: 1, flexDirection: 'column' }}>
+            <Text style={styles.categoryText}>
+              카테고리 1
+            </Text>
+            <ImageBackground
+              source={require('@/assets/images/cat-category.png')}
+              style={styles.categoryImage}
+              resizeMode="cover" // 이미지가 부모 컨테이너를 완전히 채우도록 설정
+            />
+          </View>
+          <View style={{ flex: 1, flexDirection: 'column' }}>
+            <Text style={styles.categoryText}>
+              카테고리 2
+            </Text>
+            <ImageBackground
+              source={require('@/assets/images/cat-category.png')}
+              style={styles.categoryImage}
+              resizeMode="cover" // 이미지가 부모 컨테이너를 완전히 채우도록 설정
+            />
+          </View>
+        </View>
+        <View style={styles.popularItem}>
+          <Text style={styles.popularItemText}>
+            인기상품
+          </Text>
+          <ImageBackground
+            source={require('@/assets/images/cat-popularItem.png')}
+            style={styles.popularItemImage}
+            resizeMode="cover" // 이미지가 부모 컨테이너를 완전히 채우도록 설정
+          />
+        </View>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  container: {
+    paddingTop: (StatusBar.currentHeight || 0) + 20,
     alignItems: 'center',
-    gap: 8,
+    // justifyContent: 'center', // 로고를 중앙에 위치시키기 위해 추가
+    flex: 1
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  logo: {
+    width: 100,
+    height: 30,
+    resizeMode: 'contain'
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  category: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: 'white'
   },
+  categoryText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#687076',
+    textAlign: 'center',
+    // marginBottom: 20, // 이미지 아래쪽에 조금의 간격을 두고 텍스트 배치
+  },
+  categoryContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: 'red'
+  },
+  categoryImage: {
+    alignItems: 'center',
+    flex: 1,
+    backgroundColor: '#C7A991',
+    borderRadius: 10,
+    overflow: 'hidden',  // borderRadius를 적용하기 위해 필요
+    marginHorizontal: 10,
+    // marginBottom: 10,
+  },
+  popularItem: {
+    flex: 1,
+    flexDirection: 'column'
+  },
+  popularItemText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#687076',
+    textAlign: 'center',
+  },
+  popularItemImage: {
+    flex: 1,
+    flexDirection: 'column',
+    borderRadius: 10,
+    overflow: 'hidden',  // borderRadius를 적용하기 위해 필요
+    marginHorizontal: 10,
+  }
+
 });
+

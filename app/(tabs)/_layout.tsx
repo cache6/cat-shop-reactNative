@@ -13,6 +13,13 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
+        tabBarStyle: {
+          backgroundColor: '#F5E9DC',
+          borderWidth: 0,  // 테두리 없애기
+          borderColor: 'transparent',  // 테두리 색상 투명 처리
+          elevation: 0,  // Android에서 그림자 제거
+          shadowOpacity: 0,  // iOS에서 그림자 제거
+        },
       }}>
       <Tabs.Screen
         name="index"
