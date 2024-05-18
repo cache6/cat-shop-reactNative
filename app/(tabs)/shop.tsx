@@ -74,6 +74,7 @@ export default function Shop() {
 // 스타일 정의
 const styles = StyleSheet.create({
   container: {
+    marginTop: 50,
     flex: 1,
     padding: 20,
     backgroundColor: 'white',
